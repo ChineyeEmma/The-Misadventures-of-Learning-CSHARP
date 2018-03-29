@@ -1,0 +1,111 @@
+#My first program in C#; it is ugly and a disgrace so don't look it in the eye
+#It is a game that creates a random number, and the user has to guess what it is!
+
+using System;
+
+//Namespace
+namespace NumberGuesser
+{
+    //Main Class
+    class Program
+    {
+        //Entry Point Method
+        static void Main(string[] args)
+        {
+            string name = "mr robot";
+            int age = 19;
+            string type = "quirky";
+            Console.WriteLine("Hello World");
+            Console.WriteLine(name + " is " + age);
+            //printing multiple variables in one line
+            Console.WriteLine("{0} is {1} and {2}", name, age, type);
+
+            //change text color
+            Console.ForegroundColor = ConsoleColor.Magenta;
+
+            //write app info
+            Console.WriteLine("{0} : Version {1} by {2}", "Hello ", 1.0, "Chineye");
+
+            //reset color
+            Console.ResetColor();
+
+            //ask user for thier name
+            Console.WriteLine("Whatcho name?");
+
+            //get input
+            string input = Console.ReadLine();
+            Console.WriteLine("Bonjour! {0} let's play!", input);
+
+            // int correctNum = 7;
+
+            int guess = 0;
+
+            Console.WriteLine("Take a wild guess! Between 1 and 10");
+
+            //create a new Random object
+            Random rand = new Random();
+            //generates a random number between 1 && 10
+            int correctNum = rand.Next(1, 10);
+
+
+            while (true)
+            {
+                //loop until correct guess
+                while (guess != correctNum)
+                {
+                    string userInput = Console.ReadLine();
+
+                    // checks to make sure the user typed in an actual numbr
+                    //if not a number, continue loop and try again
+                    if (!int.TryParse(userInput, out guess))
+                    {
+                        PrintMessage(ConsoleColor.Red, userInput);
+
+                        continue;
+                    }
+
+                    Console.WriteLine("wrong guess {0}", guess);
+                    guess = Int32.Parse(userInput);
+
+
+
+                }
+
+                Console.WriteLine("WINNA WINNA CHICKEN DINNA");
+
+                Console.ReadLine();
+
+
+                //ask if they want to play again
+                Console.WriteLine("Play Again? [Y or N]");
+                string answer = Console.ReadLine().ToUpper();
+
+                if (answer == "Y")
+                {
+                    continue;
+                }
+                else if (answer == "N")
+                {
+                    return;
+                }
+                else
+                {
+                    return;
+                }
+
+            }
+
+
+        }
+
+        /*prints the error message for the game*/
+        static void PrintMessage(ConsoleColor color, string message)
+        {
+            Console.ForegroundColor = color;
+            Console.WriteLine("THIS AINT A NUMAH SIS");
+            Console.ResetColor();
+        }
+        
+
+    }
+}
